@@ -1,0 +1,163 @@
+swagger: "2.0"
+info:
+  title: Task API
+  description: API description in Markdown.
+  version: 0.0.1
+host: 127.0.0.1
+basePath: /api
+schemes:
+  - http
+paths:
+  /products:
+    get:
+      summary: Returns a list of all products.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+  /products/add:
+    post:
+      summary: Returns a json with successful message.
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: json which must contain name and price
+          example: {"name": "apple", "price": 10}
+
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+  /products/{product_id}:
+    get:
+      summary: Returns product with certain id
+      produces:
+        - application/json
+      responses:
+        200:
+        description:  json with object 
+        example: {"name": "apple", "price": 10}
+  /products/update:
+    put:
+      summary: updates object in db
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: json which must contain name and price
+          example: {"id": 1}
+      produces:
+        - application/json
+      responses:
+        200:
+          description: json with status successful
+  /products/delete/{product_id}:
+    delete:
+      summary: Returns product with certain id
+      produces:
+        - application/json
+      responses:
+        200:
+        description:  json with object 
+        example: {"status": "successful"}
+  /categories:
+    get:
+      summary: Returns all categories in db
+      produces:
+        - application/json
+      responses:
+        200:
+        description:  json with object 
+        example: [{"id": 1, "name": "somename"}]
+  /categories/add:
+    post:
+      summary: Adds new category
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: json which must contain name and price
+          example: {"name": "somename"}
+      produces:
+        - application/json
+      responses:
+        200:
+        description: json with status successful
+        example: [{"name": "somename"}]
+  /category/{category_id}:
+    get:
+      summary: Returns category with certain id
+      produces:
+        - application/json
+      responses:
+        200:
+        description:  json with object 
+        example: {"name": "some category"}
+  /category/update:
+    put:
+      summary: updates object in db
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: json which must contain name
+          example: {"id": 1}
+      produces:
+        - application/json
+      responses:
+        200:
+          description: json with status successful
+  /category/delete/{category_id}:
+    delete:
+      summary: Returns status of operation
+      produces:
+        - application/json
+      responses:
+        200:
+        description:  json with object 
+        example: {"status": "successful"}
+  /category/parent/update:
+    put:
+      summary: Returns status of operation
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: json which must contain name
+          example: {"id": 1}
+      produces:
+        - application/json
+      responses:
+        200:
+          description: json with status successful
+  /products/categories:
+    get:
+      summary: Returns categories for all products
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: json which must contain list of products
+          example: ["apples", "bananas"]
+      produces:
+        - application/json
+      responses:
+        200:
+          description: json with categories like ["Fruits"]
+  /categories/products:
+    get:
+      summary: Returns categories for all products
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          description: json which must contain list of products
+          example: ["apples", "bananas"]
+      produces:
+        - application/json
+      responses:
+        200:
+          description: json with categories like ["Fruits"]
